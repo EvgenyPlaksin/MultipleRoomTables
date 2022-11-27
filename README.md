@@ -102,7 +102,7 @@ interface SchoolDao {
  ```
  
  #### n to m relation
- This is the most difficult type of relationship to implement. Let's take students and subjects as an example. Each student can have several subjects, as well as each subject is attended by several students. Thus, we cannot add main keys to the classes of both entities, and the only thing left for us is to create an auxiliary entity, the main key of which will be the student key + subject key. Thus, we get, for example, something like this:
+ This is the most difficult type of relationship to implement. Let's take students and subjects as an example. Each student can have several subjects, as well as each subject is attended by several students. Thus, we cannot add primary keys to the classes of both entities, and the only thing left for us is to create an auxiliary entity, the main key of which will be the student key + subject key. Thus, we get, for example, something like this:
   
 ![image](https://user-images.githubusercontent.com/94696816/204152608-4447bd31-a538-4f85-8c6b-a77d67665051.png)
   
@@ -115,6 +115,25 @@ data class StudentSubjectCrossRef(
     val subjectName: String
 )
 ```
+
+```kotlin
+@Entity
+data class Student(
+    @PrimaryKey(autoGenerate = false)
+    val studentName: String,
+    val semester: Int,
+    val schoolName: String
+)
+```
+
+```kotlin
+@Entity
+data class Subject(
+    @PrimaryKey(autoGenerate = false)
+    val subjectName: String
+)
+```
+
 And with some room magic, we can combine students with their subjects:
 
 ```kotlin
