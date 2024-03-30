@@ -79,7 +79,7 @@ data class School(
 
 Well, everything else will be almost identical with 1 to 1 relation:
 
-```koltin
+```kotlin
 data class SchoolWithStudents(
     @Embedded val school: School,
     @Relation(
